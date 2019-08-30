@@ -45,4 +45,6 @@ def add_character():
         db.session.commit()
         flash('Character Created!')
         return redirect(url_for('main.index'))
-    return render_template('addcharacter.html', title="Add Character", form=form)
+    c = Character()
+    characters = c.get_characters(user_id=current_user.id)
+    return render_template('addcharacter.html', title="Add Character", form=form, characters=characters)
